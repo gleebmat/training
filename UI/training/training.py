@@ -116,7 +116,22 @@ def calculator_view():
         # The Input fields and operation selector
         rx.hstack(
             rx.input(placeholder="Number 1", type="number", on_change =AppVar.set_num_1, width="100%"),
-            rx.select(AppVar.calc_operations, value=AppVar.operation, on_change=AppVar.set_operation),
+            rx.select.root(
+                rx.select.trigger(size="1", width="150px"),
+            
+                rx.select.content(
+                    rx.select.group(
+                        rx.foreach(
+                            AppVar.calc_operations, 
+                            lambda op: rx.select.item(op, value=op)
+                    )
+                ),
+                max_height="200px", 
+            ),
+            
+            value=AppVar.operation,
+            on_change=AppVar.set_operation,
+        ),
             rx.cond(
                 AppVar.req_two_numbers,
                 rx.input(placeholder="Number 2", on_change=AppVar.set_num_2, width="100%"),
