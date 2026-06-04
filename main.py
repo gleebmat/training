@@ -9,15 +9,9 @@ app = FastAPI(
     title="First trainig project",
     description="Calculator, AI Agent, and Image Generation endpoints",
     version="1.0.0",
+    port=8000,
 )
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 app.include_router(calculator.router, prefix="/calculator", tags=["Calculator"])
 app.include_router(ai_agent.router, prefix="/ai_agent", tags=["AI Agent"])

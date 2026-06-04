@@ -5,7 +5,7 @@ router = APIRouter()
 
 
 @router.get("/calculate")
-def calculate_numbers(a, b: float, choice: str):
+def calculate_numbers(a: int, b: int, choice: str):
     result = calculate(a, b, choice)
     if result is None:
         raise HTTPException(status_code=400, detail="Invalid choice")
