@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-# from routers import calculator, agent, images
+from routers import ai_agent
 
 load_dotenv()
 
@@ -20,7 +20,7 @@ app.add_middleware(
 )
 
 # app.include_router(calculator.router, prefix="/calculator", tags=["Calculator"])
-# app.include_router(agent.router, prefix="/agent", tags=["AI Agent"])
+app.include_router(ai_agent.router, prefix="/ai_agent", tags=["AI Agent"])
 # app.include_router(images.router, prefix="/images", tags=["Image Generation"])
 
 
